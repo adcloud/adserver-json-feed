@@ -1,0 +1,163 @@
+{
+    "description": "All informations for one single ad.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "Unique id of this ad.",
+            "type": "integer",
+            "minimum": 1,
+            "required": true
+        },
+        "booking": {
+            "description": "Id of the bookings this ad belongs to.",
+            "type": "integer",
+            "minimum": 1,
+            "required": true
+        },
+        "product": {
+            "description": "Id of the product this ad belongs to.",
+            "type": "integer",
+            "minimum": 1,
+            "required": true
+        },
+        "tag": {
+            "description": "Flag if this ad is an adtag.",
+            "type": "integer",
+            "enum": [0, 1],
+            "required": true
+        },
+        "flash": {
+            "description": "Flag if this ad contains flash.",
+            "type": "integer",
+            "enum": [0, 1],
+            "required": true
+        },
+        "display": {
+            "description": "Flag if this ad contains only images.",
+            "type": "integer",
+            "enum": [0, 1],
+            "required": true
+        },
+        "image_text": {
+            "description": "Flag if this ad contains an image AND some text.",
+            "type": "integer",
+            "enum": [0, 1],
+            "required": true
+        },
+        "prio": {
+            "description": "Internal priority of this ad.",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 255,
+            "required": true
+        },
+        "fc": {
+            "description": "Frequency capping: Limit of impressions for this ad.",
+            "type": "integer",
+            "minimum": 0,
+            "required": true
+        },
+        "fc_days": {
+            "description": "Frequency capping: Range for the limit in days.",
+            "type": "integer",
+            "minimum": 0,
+            "required": true
+        },
+        "postview": {
+            "description": "Additional viewtracking url (optional).",
+            "type": "string",
+            "format": "uri",
+            "required": true
+        },
+        "postview_type": {
+            "description": "Flag how to rendert the optional viewtracking url.",
+            "type": "string",
+            "enum": ["0", "1"],
+            "required": true
+        },
+        "head": {
+            "description": "Headline of this ad.",
+            "type": "string",
+            "maximum": 255,
+            "required": true
+        },
+        "text": {
+            "description": "Main text body of this ad.",
+            "type": "string",
+            "maximum": 255,
+            "required": true
+        },
+        "link": {
+            "description": "Description of the link (see field 'url').",
+            "type": "string",
+            "maximum": 255,
+            "required": true
+        },
+        "url": {
+            "description": "Destination after the user clicked the link.",
+            "type": "string",
+            "maximum": 65535,
+            "required": true
+        },
+        "keywords": {
+            "description": "Keywords for retargeting.",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "string",
+                "minimum": 1
+            },
+            "required": true
+        },
+        "keyword_lifetime": {
+            "description": "Lifetime for a single retargeting keyword.",
+            "type": "integer",
+            "minimum": 0,
+            "required": true
+        },
+        "exclusion_keywords": {
+            "description": "Keywords for exclusion (negativ) retargeting.",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "string",
+                "minimum": 1
+            },
+            "required": true
+        },
+        "locations": {
+            "description": "Allowed locations for 'geo-targeting'.",
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "string",
+                "minimum": 1
+            },
+            "required": true
+        },
+        "exclude": {
+            "description": "List of product ids this ad MUST NOT displayed with.",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "images": {
+            "description": "List of all images for this ad.",
+            "type": "object",
+            "patternProperties": {
+                "[0-9]+x[0-9]+": {
+                    "$ref": "./ad-image-schema.json"
+                }
+            },
+            "required": true
+        },
+        "type": {
+            "description": "Indicates the type of this document.",
+            "type": "string",
+            "enum": ["ad"],
+            "required": true
+        }
+    }
+}

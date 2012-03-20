@@ -1,0 +1,38 @@
+{
+    "description": "Single flash / image object of an ad.",
+    "type": "object",
+    "properties": {
+        "flash": {
+            "description": "Wether this is an flash ad or not.",
+            "type": "integer",
+            "enum": [0, 1],
+            "required": true
+        },
+        "display": {
+            "description": "Wether this is an display only ad or not.",
+            "type": "integer",
+            "enum": [0, 1],
+            "required": true
+        },
+        "src": {
+            "description": "Url to the image / flash.",
+            "type": "string",
+            "format": "uri",
+            "required": true
+        },
+        "width": {
+            "description": "Width of the object.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 200,
+            "required": true
+        },
+        "height": {
+            "description": "Height of the object.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 200,
+            "required": true
+        }
+    }
+}
