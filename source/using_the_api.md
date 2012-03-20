@@ -140,7 +140,7 @@ you an idea of how to use those options:
 
 <javascript>
     var img = new Image;
-    img.src = postview_url.replace(/\[timestamp\]/i, Math.random());
+    img.src = current_ad.postview_url.replace(/\[timestamp\]/i, Math.random());
 </javascript>
 
 <javascript>
@@ -161,9 +161,9 @@ you an idea of how to use those options:
     img.src = postview_url.replace(/\[timestamp\]/i, Math.random());
 </javascript>
 
-When using the IFrame you need again the `current_ad` based on its
-position. In both cases you need to replace the `[timestamp]`
-placeholder within the `postview_url` with a random number.
+You need again the `current_ad` based on its position. In both cases you need
+to replace the `[timestamp]` placeholder within the `postview_url` with a
+random number.
 
 A complete view tracking example can be found as a [Gist on GitHub][6].
 
@@ -182,7 +182,7 @@ example of how to construct the URL for a given ad. The variables
 examples before:
 
 <javascript>
-var click_url = ads[i].url.replace(/\[TIMESTAMP\]/gm, new Date().getTime());
+var click_url = current_ad.url.replace(/\[TIMESTAMP\]/gm, new Date().getTime());
 var final_url = "http://a.adcloud.net/redirect/" +
     Encoding.base64(click_url) + // @SEE: https://gist.github.com/09fb127bd28a57091117
     '?ac_d=1' +
