@@ -23,3 +23,14 @@ with all its dependencies. After you've done that just run this command:
 
 You will have a preview the rendered guides available at
 <http://localhost:9292>.
+
+When you're ready to deploy the latest changes as GitHub Pages you have
+to perform the following commands:
+
+    $ bundle exec guides build
+    $ bundle exec rake push
+
+**Reminder:** If this is your first deployment of the guides you have to
+setup the deployment first:
+
+    $ bundle exec rake setup
