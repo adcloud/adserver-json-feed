@@ -3,7 +3,7 @@
 Given you have a list of placements each identified by an unique ID. For
 each of those placements you want to display or deliver ads from our
 network. For accessing those ads we provide an API which we also use
-internally. This API accepts some paramterers which will be further
+internally. This API accepts some paramters which will be further
 discussed in other chapters. The following chapter will give you a first
 glance on the API, how the response will look like and what caveats
 there are.
