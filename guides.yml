@@ -1,0 +1,17 @@
+title: Adserver JSON Feed
+description: This projects aims to describe the JSON feed of the adcloud Adserver.
+
+authors:
+  Documentation Team:
+    - name: Michael Contento
+      nick: michaelcontento
+      description: Michael is an internal developer.
+    - name: Dirk Breuer
+      nick: railsbros-dirk
+      description: Dirk is an internal developer.
+  Designers:
+    - name: Tobis Karsch
+      nick: tobiaskarsch
+      description: Tobi is the UX/UI expert at adcloud.
+
+index:
