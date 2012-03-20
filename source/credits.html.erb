@@ -13,7 +13,7 @@
 <% Guides.meta["authors"].each do |group, authors| %>
   <h3 class="section"><%= group %></h3>
   <% authors.each do |author| %>
-    <%= author(author["name"], author["nick"]) do %>
+    <%= author(author["name"], author["nick"], author["image"]) do %>
       <%= author["description"].html_safe %>
     <% end %>
   <% end %>

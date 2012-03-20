@@ -6,13 +6,16 @@ authors:
     - name: Michael Contento
       nick: michaelcontento
       description: Michael is an internal developer.
+      image: https://trello-avatars.s3.amazonaws.com/5075fc109d44118f351ccb4f35d7de61/170.png
     - name: Dirk Breuer
       nick: railsbros-dirk
       description: Dirk is an internal developer.
+      image: https://trello-avatars.s3.amazonaws.com/6eb3676c7339fe16904961d531f76cf3/170.png
   Designers:
     - name: Tobis Karsch
       nick: tobiaskarsch
       description: Tobi is the UX/UI expert at adcloud.
+      image: https://trello-avatars.s3.amazonaws.com/a4bbdce5524e1753d6fe458ba63010bf/170.png
 
 index:
   JSON Feed:
