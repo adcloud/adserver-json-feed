@@ -16,12 +16,6 @@ authors:
 
 index:
   JSON Feed:
-    - title: First Steps
-      url: first_steps
+    - title: Using the API
+      url: using_the_api
       text: Here you find a general introduction about the API and the idea behind it.
-    - title: Adcloud Viewpixel
-      url: adcloud_viewpixel
-      text: To track ad impressions one has to use a transparent GIF image. How to use this can be found under this section.
-    - title: Encoding the Click-URL
-      url: click_url_encoding
-      text: This describes how to properly encode the click url when calling our system.
