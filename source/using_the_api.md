@@ -157,8 +157,6 @@ you an idea of how to use those options:
         + 'src="'+ current_ad.postview.replace(/\[timestamp\]/i, Math.random()) +'" '
         + '></iframe>'
     );
-    var img = new Image;
-    img.src = postview_url.replace(/\[timestamp\]/i, Math.random());
 </javascript>
 
 You need again the `current_ad` based on its position. In both cases you need
