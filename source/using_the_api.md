@@ -189,10 +189,11 @@ As you could see in the example feed URL there are two more parameters:
  * `sizes` - The sizes of the single ad "slots". This parameter can be a
    comma separated list of dimension strings (i.e.: `120x85,240x150`).
 
-The feed will always contain **all** ads, that _either_ fit in a single
-slot _or_ the entire placement. We will only filter the ads, but **not**
-the images within an ad. Thus an ad will always contain all images, even
-if only one will fit the given placement.
+The feed can contain both, display and image-text ads. For display
+ads we filter all those ads, that don't match the given dimension. In the case
+of an image-text ad we will pre-filter those ads that doesn't match the
+given sizes. If more then one size is given, the ad must only fit one of
+them.
 
 ### Redirect URL
 
