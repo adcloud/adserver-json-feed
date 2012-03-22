@@ -4,6 +4,5 @@ bin
 output
 staging
 _deploy
-Gemfile.lock
 *.swp
 *.swo
