@@ -138,8 +138,8 @@ The code requires the following preconditions:
    <javascript>
    static_placement = {
      id: 4711,        // The ID of the placement
-     topic: "Health", // The topic of the placement
-     page_type: 0     // An internal identifier
+     topic: 23,       // The topic ID of the placement
+     page_type: 1     // An internal identifier
    }
    </javascript>
 
