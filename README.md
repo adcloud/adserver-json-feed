@@ -8,6 +8,9 @@ covered:
     Schema.
  2. How can you interact with the API?
 
+The compiled guides are deployed as GitHub Pages and can be found under
+the following URL: <http://adcloud.github.com/adserver-json-feed>.
+
 ## Usage
 
 In order to add or edit content for this guide you need Ruby and Bundler
