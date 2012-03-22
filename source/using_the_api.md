@@ -14,11 +14,16 @@ The main argument you have to provide when calling the API, is the ID of
 the placement for which you need information abouts its possible ads.
 For each placement there is a list of ads from which the client can
 choose to display a selection. This list can be accessed via an JSON
-feed from the adcloud adserver. To give you a first impression of what
-the data look like we provide an [example feed][1].
+feed from the adcloud adserver:
 
-The example feed consists of 25 ads, which is the maximum amount of ads
-you will receive at this point when consuming the feed for a placement:
+<plain>
+http://a.adcloud.net/adcloud/<PLACEMENT_ID>?dimension=<DIMENSION>&sizes=<SIZES>
+</plain>
+
+To give you a first impression of what the data look like we provide an
+[example feed][1].  The example feed consists of 25 ads, which is the
+maximum amount of ads you will receive at this point when consuming the
+feed for a placement:
 
 <javascript>
 {
@@ -164,6 +169,21 @@ to replace the `[timestamp]` placeholder within the `postview_url` with a
 random number.
 
 A complete view tracking example can be found as a [Gist on GitHub][6].
+
+### Dimension and Sizes
+
+As you could see in the example feed URL there are two more parameters:
+`dimension` and `sizes`. There meaning is described as the following:
+
+ * `dimension` - Dimension of the complete placement. The dimension have
+   to be defined in the format `WIDTHxHEIGHT` (i.e.: `125x100`).
+ * `sizes` - The sizes of the single ad "slots". This parameter can be a
+   comma separated list of dimension strings (i.e.: `120x85,240x150`).
+
+The feed will always contain **all** ads, that _either_ fit in a single
+slot _or_ the entire placement. We will only filter the ads, but **not**
+the images within an ad. Thus an ad will always contain all images, even
+if only one will fit the given placement.
 
 ### Redirect URL
 
