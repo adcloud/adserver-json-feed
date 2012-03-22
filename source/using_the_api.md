@@ -92,7 +92,7 @@ But for now let us have a look at the most important attributes of an ad:
   (`value: 1`) or an IFrame (`value: 2`)
 * `images` - A list of all available images. The structure should be
   quite self-explanatory. For further information have a look in the
-  JSON Schema.
+  [JSON Schema][2].
 
 NOTE:
 When you consume the feed please make sure, that we will only send out
@@ -132,7 +132,17 @@ The code requires the following preconditions:
 
  * You requested the JSON feed for a given placement ID
  * You create a `static_placement` based on static metadata we will
-   provide you before hand
+   provide you before hand. The corresponding object should look
+   something like the following:
+
+   <javascript>
+   static_placement = {
+     id: 4711,        // The ID of the placement
+     topic: "Health", // The topic of the placement
+     page_type: 0     // An internal identifier
+   }
+   </javascript>
+
  * You need the `current_ad` from the list of all received ads based on
    its display position
 
