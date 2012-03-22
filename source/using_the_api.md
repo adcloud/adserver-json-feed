@@ -73,9 +73,8 @@ feed for a placement:
 
 ### The Ad-Object
 
-You can always find a detailed description of the the entire [feed][4],
-the [ad object][2] an the [ad image object][3] for our feed. But for now
-let us have a look at the most important attributes of an ad:
+You can find a detailed description of the the entire feed as [JSON Schema][2].
+But for now let us have a look at the most important attributes of an ad:
 
 * `id` - The unique ID for this ad
 * `head` - A short headline to be displayed (max. 255 characters)
@@ -168,7 +167,7 @@ You need again the `current_ad` based on its position. In both cases you need
 to replace the `[timestamp]` placeholder within the `postview_url` with a
 random number.
 
-A complete view tracking example can be found as a [Gist on GitHub][6].
+A complete view tracking example can be found as a [Gist on GitHub][4].
 
 ### Dimension and Sizes
 
@@ -264,8 +263,6 @@ If you ever happen to discover a mistake or something we haven't thought
 of upfront, please don't hesitate to contact us.
 
 [1]: http://a.adcloud.net/adcloud/3691?dimension=728x90&sizes=158x90,158x90
-[2]: https://raw.github.com/adcloud/adserver-json-feed/master/source/ad-schema.json
-[3]: https://raw.github.com/adcloud/adserver-json-feed/master/source/ad-image-schema.json
-[4]: https://raw.github.com/adcloud/adserver-json-feed/master/source/feed-schema.json
-[5]: https://gist.github.com/09fb127bd28a57091117
-[6]: https://gist.github.com/a5c5ac329da156c2c68a
+[2]: https://github.com/adcloud/adserver-json-feed/tree/master/source/schema
+[3]: https://gist.github.com/09fb127bd28a57091117
+[4]: https://gist.github.com/a5c5ac329da156c2c68a
