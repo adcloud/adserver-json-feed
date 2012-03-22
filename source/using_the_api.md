@@ -244,10 +244,14 @@ var result_url = 'http://a.adcloud.net/redirect/'
     + '&ac_ci=1047';
 </javascript>
 
-NOTE:
-We use a slightly modified Base64 encoding where we replace `/` with `*`
-and `=` with `@`. You can find the Javascript [code for this encoding
-here][5].
+<!-- unfortunatly this has to be done like this. It is not possible to
+use markdown within an IMPORTANT section -->
+IMPORTANT:
+    We use a slightly modified Base64 encoding where we replace
+    <code>/</code> with <code>*</code> and <code>=</code> with
+    <code>@</code>. You can find the Javascript <a
+    href="https://gist.github.com/09fb127bd28a57091117">code for this
+    encoding here</a>.
 
 ### Feedback
 
