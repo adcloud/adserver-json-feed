@@ -45,7 +45,7 @@
             "required": true
         },
         "prio": {
-            "description": "Internal priority of this ad.",
+            "description": "Internal priority of this ad (Always 1).",
             "type": "integer",
             "minimum": 1,
             "maximum": 255,
@@ -99,44 +99,8 @@
             "maximum": 65535,
             "required": true
         },
-        "keywords": {
-            "description": "Keywords for retargeting.",
-            "type": "array",
-            "minItems": 0,
-            "items": {
-                "type": "string",
-                "minimum": 1
-            },
-            "required": true
-        },
-        "keyword_lifetime": {
-            "description": "Lifetime for a single retargeting keyword.",
-            "type": "integer",
-            "minimum": 0,
-            "required": true
-        },
-        "exclusion_keywords": {
-            "description": "Keywords for exclusion (negativ) retargeting.",
-            "type": "array",
-            "minItems": 0,
-            "items": {
-                "type": "string",
-                "minimum": 1
-            },
-            "required": true
-        },
-        "locations": {
-            "description": "Allowed locations for 'geo-targeting'.",
-            "type": "array",
-            "minItems": 0,
-            "items": {
-                "type": "string",
-                "minimum": 1
-            },
-            "required": true
-        },
         "exclude": {
-            "description": "List of product ids this ad MUST NOT displayed with.",
+            "description": "List of product ids this ad MUST NOT displayed with (Always empty).",
             "type": "array",
             "minItems": 1,
             "items": {
@@ -151,12 +115,6 @@
                     "$ref": "./ad-image-schema.json"
                 }
             },
-            "required": true
-        },
-        "type": {
-            "description": "Indicates the type of this document.",
-            "type": "string",
-            "enum": ["ad"],
             "required": true
         }
     }
