@@ -135,7 +135,7 @@ The code requires the following preconditions:
    static_placement = {
      id: 4711,        // The ID of the placement
      topic: 23,       // The topic ID of the placement
-     companyId: 9999  // An internal identifier for you, the partner
+     companyId: 9999  // The adcloud identifier for you, the partner
    }
    </javascript>
 
