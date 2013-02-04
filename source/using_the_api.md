@@ -118,19 +118,15 @@ thus count the impression. The following Javascript example shows how to
 construct the URL:
 
 <javascript>
-var url = 'http://t.adcloud.net/t.gif' +
+var url = 'http://a.adcloud.net/t.gif' +
     '?r=' + Math.random() +
-    '&ac_d=1' +
     '&ac_t=' + static_placement.topic +
     '&ac_pm=' + static_placement.id +
-    '&ac_pt=' + static_placement.page_type +
-    '&ac_k=' +
-    '&ac_z=' +
-    '&ac_f=0' +
     '&ac_p=' + current_ad.product +
         'x' + '1' +
         'x' + current_ad.id +
-        'x' + current_ad.booking;
+        'x' + current_ad.booking
+    '&ac_par=' + static_placement.companyId;
 </javascript>
 
 The code requires the following preconditions:
@@ -144,7 +140,7 @@ The code requires the following preconditions:
    static_placement = {
      id: 4711,        // The ID of the placement
      topic: 23,       // The topic ID of the placement
-     page_type: 1     // An internal identifier
+     companyId: 9999  // The adcloud identifier for you, the partner
    }
    </javascript>
 
@@ -265,4 +261,4 @@ of upfront, please don't hesitate to contact us.
 [1]: http://a.adcloud.net/feed/3691?dimension=728x90&sizes=158x90,158x90
 [2]: https://github.com/adcloud/adserver-json-feed/tree/master/source/schema
 [3]: https://gist.github.com/09fb127bd28a57091117
-[4]: https://gist.github.com/a5c5ac329da156c2c68a
+[4]: https://gist.github.com/222b4a540d2687433530
