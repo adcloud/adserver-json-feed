@@ -95,7 +95,7 @@ ad impression (the postview image and the adcloud view tracking).
 
 ### Dimension and Sizes
 
-As you could see in the example feed URL there are two more parameters:
+As you can see in the example feed URL there are two more parameters:
 `dimension` and `sizes`. There meaning is described as the following:
 
  * `dimension` - Dimension of the complete placement. The dimension have
