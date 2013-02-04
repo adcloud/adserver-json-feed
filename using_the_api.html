@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Adserver JSON FeedAdserver JSON Feed: Using the API</title>
+
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="stylesheets/overrides.style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/overrides.print.css" media="print" />
+
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      
+
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Adserver JSON Feed</a></h1>
+      <p class="hide"><a href="#mainCol">Skip navigation</a>.</p>
+      <ul class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="index"><a href="index.html" onclick="guideMenu(); return false;" id="guidesMenu">Guides Index <span id="guidesArrow">&#9656;</span></a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+            <dl class="L">
+    <dt>JSON Feed</dt>
+      <dd><a href="using_the_api.html">Using the API</a></dd>
+</dl>
+<dl class="R">
+</dl>
+
+
+          </div>
+        </li>
+        <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2 id='using_the_api'>Using the API</h2>
+
+<p>Given you have a list of placements each identified by an unique ID. For each of those placements you want to display or deliver ads from our network. For accessing those ads we provide an API which we also use internally. This API accepts some parameters which will be further discussed in other chapters. The following chapter will give you a first glance on the API, how the response will look like and what caveats there are.</p>
+      <div id="subCol">
+        <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+        <ol class="chapters">
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <p>The main argument you have to provide when calling the API, is the ID of the placement for which you need information abouts its possible ads. For each placement there is a list of ads from which the client can choose to display a selection. This list can be accessed via an JSON feed from the adcloud adserver:</p>
+<div class='code_container'>
+<pre class='brush: plain; gutter: false; toolbar: false'>
+http://a.adcloud.net/feed/&lt;PLACEMENT_ID&gt;?dimension=&lt;DIMENSION&gt;&amp;sizes=&lt;SIZES&gt;
+</pre>
+</div>
+<p>To give you a first impression of what the data look like we provide an <a href='http://a.adcloud.net/feed/3691?dimension=728x90&amp;sizes=158x90,158x90'>example feed</a>. The example feed consists of 25 ads, which is the maximum amount of ads you will receive at this point when consuming the feed for a placement:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+{
+  &quot;id&quot;: &quot;3691&quot;,
+  &quot;ads&quot;: [
+    {
+      &quot;tag&quot;: 0,
+      &quot;id&quot;: 28447,
+      &quot;flash&quot;: 0,
+      &quot;booking&quot;: 80977,
+      &quot;product&quot;: 10229,
+      &quot;display&quot;: 0,
+      &quot;image_text&quot;: 1,
+      &quot;prio&quot;: 1,
+      &quot;fc&quot;: 0,
+      &quot;postview&quot;: &quot;&quot;,
+      &quot;postview_type&quot;: &quot;1&quot;,
+      &quot;fc_days&quot;: 0,
+      &quot;exclude&quot;: [],
+      &quot;head&quot;: &quot;Partnervermittlung ab 30!&quot;,
+      &quot;text&quot;: &quot;Starten Sie jetzt die Suche nach Ihrem Traumpartner, mit eDarling.&quot;,
+      &quot;link&quot;: &quot;Jetzt bei eDarling anmelden!&quot;,
+      &quot;url&quot;: &quot;http://ad.doubleclick.net/clk;247082507;65276591;p&quot;,
+      &quot;images&quot;: {
+        &quot;158x90&quot;: {
+          &quot;flash&quot;: 0,
+          &quot;display&quot;: 0,
+          &quot;src&quot;: &quot;http://ads.adcloud.net/p/10229/313979.gif&quot;,
+          &quot;width&quot;: &quot;158&quot;,
+          &quot;height&quot;: &quot;90&quot;
+        }
+      }
+    },
+    // up 24 more ads ...
+  ],
+  &quot;backfill&quot;: [],
+  &quot;modified&quot;: &quot;2012-03-20 11:44:58&quot;
+}
+</pre>
+</div>
+<h3 id='the_adobject'>The Ad-Object</h3>
+
+<p>You can find a detailed description of the the entire feed as <a href='https://github.com/adcloud/adserver-json-feed/tree/master/source/schema'>JSON Schema</a>. But for now let us have a look at the most important attributes of an ad:</p>
+
+<ul>
+<li><code>id</code> - The unique ID for this ad</li>
+
+<li><code>head</code> - A short headline to be displayed (max. 255 characters)</li>
+
+<li><code>text</code> - A long text to be displayed along with the ad</li>
+
+<li><code>url</code> - Destination for the user to be redirected after a click</li>
+
+<li><code>link</code> - Description of the url to be displayed</li>
+
+<li><code>postview</code> - Optional tracking image after this ad is displayed. This can be used by our customers to track the amount of impressions them self</li>
+
+<li><code>postview_type</code> - The postview image could be either a simple image (<code>value: 1</code>) or an IFrame (<code>value: 2</code>)</li>
+
+<li><code>images</code> - A list of all available images. The structure should be quite self-explanatory. For further information have a look in the <a href='https://github.com/adcloud/adserver-json-feed/tree/master/source/schema'>JSON Schema</a>.</li>
+</ul>
+<div class='note'><p>When you consume the feed please make sure, that we will only send out ads that are valid at the time of your request. And still this selection could be a subset of a bigger collection of ads. If you need to know which ads are new and which were deleted between two subsequent requests, you have to implement such logic in your side.</p></div>
+<p>So there could be two tracking pixels that must be displayed for each ad impression (the postview image and the adcloud view tracking).</p>
+
+<h3 id='dimension_and_sizes'>Dimension and Sizes</h3>
+
+<p>As you can see in the example feed URL there are two more parameters: <code>dimension</code> and <code>sizes</code>. There meaning is described as the following:</p>
+
+<ul>
+<li><code>dimension</code> - Dimension of the complete placement. The dimension have to be defined in the format <code>WIDTHxHEIGHT</code> (i.e.: <code>125x100</code>).</li>
+
+<li><code>sizes</code> - The sizes of the single ad &#8220;slots&#8221;. This parameter can be a comma separated list of dimension strings (i.e.: <code>120x85,240x150</code>).</li>
+</ul>
+
+<p>The feed can contain both, display and image-text ads. For display ads we filter all those ads, that don&#8217;t match the given dimension. In the case of an image-text ad we will pre-filter those ads that doesn&#8217;t match the given sizes. If more then one size is given, the ad must only fit one of them.</p>
+
+<h3 id='adcloud_view_tracking'>Adcloud View Tracking</h3>
+
+<p>To be able to track if a an ad was displayed or not a transparent GIF needs to be requested. The query parameters of that request need to include information to associate the request with the displayed ad and thus count the impression. The following Javascript example shows how to construct the URL:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+var url = 'http://a.adcloud.net/t.gif' +
+    '?r=' + Math.random() +
+    '&amp;ac_t=' + static_placement.topic +
+    '&amp;ac_pm=' + static_placement.id +
+    '&amp;ac_p=' + current_ad.product +
+        'x' + '1' +
+        'x' + current_ad.id +
+        'x' + current_ad.booking
+    '&amp;ac_par=' + static_placement.companyId;
+</pre>
+</div>
+<p>The code requires the following preconditions:</p>
+
+<ul>
+<li>
+<p>You requested the JSON feed for a given placement ID</p>
+</li>
+
+<li>
+<p>You create a <code>static_placement</code> based on static metadata we will provide you before hand. The corresponding object should look something like the following:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+static_placement = {
+  id: 4711,        // The ID of the placement
+  topic: 23,       // The topic ID of the placement
+  companyId: 9999  // The adcloud identifier for you, the partner
+}
+</pre>
+</div></li>
+
+<li>
+<p>You need the <code>current_ad</code> from the list of all received ads based on its display position</p>
+</li>
+</ul>
+
+<h3 id='postview_image'>Postview Image</h3>
+
+<p>If you want to track the impressions on your own too, you have two options: Using an image or an IFrame. The following examples will give you an idea of how to use those options:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+var img = new Image;
+    img.src = current_ad.postview_url.replace(/\[timestamp\]/i, Math.random());
+</pre>
+</div><div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+document.write('&lt;iframe '
+        + 'vspace=&quot;0&quot; '
+        + 'hspace=&quot;0&quot; '
+        + 'allowTransparency=&quot;true&quot; '
+        + 'scrolling=&quot;no&quot; '
+        + 'marginWidth=&quot;0&quot; '
+        + 'marginHeight=&quot;0&quot; '
+        + 'frameBorder=&quot;0&quot; '
+        + 'width=&quot;1&quot; height=&quot;1&quot; '
+        + 'border=&quot;0&quot; '
+        + 'src=&quot;'+ current_ad.postview.replace(/\[timestamp\]/i, Math.random()) +'&quot; '
+        + '&gt;&lt;/iframe&gt;'
+    );
+</pre>
+</div>
+<p>You need again the <code>current_ad</code> based on its position. In both cases you need to replace the <code>[timestamp]</code> placeholder within the <code>postview_url</code> with a random number.</p>
+
+<p>A complete view tracking example can be found as a <a href='https://gist.github.com/222b4a540d2687433530'>Gist on GitHub</a>.</p>
+
+<h3 id='redirect_url'>Redirect URL</h3>
+
+<p>So far we only looked at counting ad impressions. Another important part to take care of when displaying ads, is the URL to which the user will be redirected after actually clicking the ad. That URL is stored in the <code>url</code> field. We not only count the ad impressions but also count the clicks from the user. Due to this every click have to be routed through our system. For that reasons <em>every</em> URL have to be properly encoded on the client site. We can not provide you the encoded URL because you need to add some query parameters first. Again, here is another Javascript example of how to construct the URL for a given ad. The variables <code>static_placement</code> and <code>current_ad</code> have the same meaning as in the examples before:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+var click_url = current_ad.url.replace(/\[TIMESTAMP\]/gm, new Date().getTime());
+var final_url = &quot;http://a.adcloud.net/redirect/&quot; +
+    Encoding.base64(click_url) + // @SEE: https://gist.github.com/09fb127bd28a57091117
+    '?ac_d=1' +
+    '&amp;ac_t=' + static_placement.topic +
+    '&amp;ac_pm=' + static_placement.id +
+    '&amp;ac_pt=' + static_placement.page_type +
+    '&amp;ac_k=' +
+    '&amp;ac_z=' +
+    '&amp;ac_f=0' +
+    '&amp;ac_p=' + current_ad.product +
+        'x' + '1' +
+        'x' + current_ad.id +
+        'x' + current_ad.booking +
+    '&amp;ac_ad=' + current_ad.id +
+    '&amp;ac_pr=' + current_ad.product +
+    '&amp;ac_pos2=1' +
+    '&amp;ac_part=0' +
+    '&amp;ac_b=' + current_ad.booking +
+    '&amp;ac_ci=1047';
+</pre>
+</div>
+<p>The resulting URL could look something like the following:</p>
+<div class='code_container'>
+<pre class='brush: javascript; gutter: false; toolbar: false'>
+var result_url = 'http://a.adcloud.net/redirect/'
+    + 'QWRjbG91ZA@@aHR0cDovL2FkNC5hZGZhcm0xLmFkaXRpb24uY29tL3JlZGk*c2lkPTQ5MzIxMiZraWQ9Mjc0NjU4JmJpZD05NDczNDI@'
+    + '?ac_d=1'
+    + '&amp;ac_t=2'
+    + '&amp;ac_pm=3691'
+    + '&amp;ac_pt=0'
+    + '&amp;ac_k='
+    + '&amp;ac_z='
+    + '&amp;ac_f=0'
+    + '&amp;ac_pc=1'
+    + '&amp;ac_p=12066x2x32985x85173'
+    + '&amp;ac_ad=32985'
+    + '&amp;ac_pr=12066'
+    + '&amp;ac_pos2=1'
+    + '&amp;ac_part=0'
+    + '&amp;ac_b=85173'
+    + '&amp;ac_ci=1047';
+</pre>
+</div><!-- unfortunatly this has to be done like this. It is not possible to
+use markdown within an IMPORTANT section --><div class='warning'><p>We use a slightly modified Base64 encoding where we replace     <code>/</code> with <code>*</code> and <code>=</code> with     <code>@</code>. You can find the Javascript <a href='https://gist.github.com/09fb127bd28a57091117'>code for this     encoding here</a>.</p></div>
+<h3 id='feedback'>Feedback</h3>
+
+<p>This guide should enable you to use and integrate the Adserver JSON Feed with your systems. We try to anticipate problems and describe them here, so that you don&#8217;t have to run into them by yourself. A straight forward description of the API is our goal.</p>
+
+<p>If you ever happen to discover a mistake or something we haven&#8217;t thought of upfront, please don&#8217;t hesitate to contact us.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      
+  <p>This work is licensed under a
+    <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution Share Alike 3.0</a>
+    license.
+  </p>
+  <p>
+  </p>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shCore.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushRuby.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushJScript.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushCss.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushXml.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushSql.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter/shBrushPlain.js"></script>
+  <script type="text/javascript">
+    SyntaxHighlighter.all()
+  </script>
+</body>
+</html>
