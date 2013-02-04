@@ -17,7 +17,7 @@ choose to display a selection. This list can be accessed via an JSON
 feed from the adcloud adserver:
 
 <plain>
-http://a.adcloud.net/adcloud/<PLACEMENT_ID>?dimension=<DIMENSION>&sizes=<SIZES>
+http://a.adcloud.net/feed/<PLACEMENT_ID>?dimension=<DIMENSION>&sizes=<SIZES>
 </plain>
 
 To give you a first impression of what the data look like we provide an
@@ -37,21 +37,15 @@ feed for a placement:
       "product": 10229,
       "display": 0,
       "image_text": 1,
-      "prio": 85,
+      "prio": 1,
       "fc": 0,
       "postview": "",
       "postview_type": "1",
       "fc_days": 0,
-      "exclude": [
-        "3013"
-      ],
-      "keyword_lifetime": 0,
-      "keywords": {},
+      "exclude": [],
       "head": "Partnervermittlung ab 30!",
       "text": "Starten Sie jetzt die Suche nach Ihrem Traumpartner, mit eDarling.",
-      "exclusion_keywords": {},
       "link": "Jetzt bei eDarling anmelden!",
-      "locations": {},
       "url": "http://ad.doubleclick.net/clk;247082507;65276591;p",
       "images": {
         "158x90": {
@@ -61,8 +55,7 @@ feed for a placement:
           "width": "158",
           "height": "90"
         }
-      },
-      "type": "ad"
+      }
     },
     // up 24 more ads ...
   ],
@@ -79,10 +72,6 @@ But for now let us have a look at the most important attributes of an ad:
 * `id` - The unique ID for this ad
 * `head` - A short headline to be displayed (max. 255 characters)
 * `text` - A long text to be displayed along with the ad
-* `prio` - The priority of this ad to be selected
-  INFO: Our optimization
-  system assigns numbers between 0 to 85, but the value can manually be
-  increased up to 255, whereas higher is better.
 * `url` - Destination for the user to be redirected after a click
 * `link` - Description of the url to be displayed
 * `postview` - Optional tracking image after this ad is displayed. This
@@ -103,6 +92,22 @@ requests, you have to implement such logic in your side.
 
 So there could be two tracking pixels that must be displayed for each
 ad impression (the postview image and the adcloud view tracking).
+
+### Dimension and Sizes
+
+As you could see in the example feed URL there are two more parameters:
+`dimension` and `sizes`. There meaning is described as the following:
+
+ * `dimension` - Dimension of the complete placement. The dimension have
+   to be defined in the format `WIDTHxHEIGHT` (i.e.: `125x100`).
+ * `sizes` - The sizes of the single ad "slots". This parameter can be a
+   comma separated list of dimension strings (i.e.: `120x85,240x150`).
+
+The feed can contain both, display and image-text ads. For display
+ads we filter all those ads, that don't match the given dimension. In the case
+of an image-text ad we will pre-filter those ads that doesn't match the
+given sizes. If more then one size is given, the ad must only fit one of
+them.
 
 ### Adcloud View Tracking
 
@@ -178,22 +183,6 @@ to replace the `[timestamp]` placeholder within the `postview_url` with a
 random number.
 
 A complete view tracking example can be found as a [Gist on GitHub][4].
-
-### Dimension and Sizes
-
-As you could see in the example feed URL there are two more parameters:
-`dimension` and `sizes`. There meaning is described as the following:
-
- * `dimension` - Dimension of the complete placement. The dimension have
-   to be defined in the format `WIDTHxHEIGHT` (i.e.: `125x100`).
- * `sizes` - The sizes of the single ad "slots". This parameter can be a
-   comma separated list of dimension strings (i.e.: `120x85,240x150`).
-
-The feed can contain both, display and image-text ads. For display
-ads we filter all those ads, that don't match the given dimension. In the case
-of an image-text ad we will pre-filter those ads that doesn't match the
-given sizes. If more then one size is given, the ad must only fit one of
-them.
 
 ### Redirect URL
 
@@ -273,7 +262,7 @@ description of the API is our goal.
 If you ever happen to discover a mistake or something we haven't thought
 of upfront, please don't hesitate to contact us.
 
-[1]: http://a.adcloud.net/adcloud/3691?dimension=728x90&sizes=158x90,158x90
+[1]: http://a.adcloud.net/feed/3691?dimension=728x90&sizes=158x90,158x90
 [2]: https://github.com/adcloud/adserver-json-feed/tree/master/source/schema
 [3]: https://gist.github.com/09fb127bd28a57091117
 [4]: https://gist.github.com/a5c5ac329da156c2c68a
